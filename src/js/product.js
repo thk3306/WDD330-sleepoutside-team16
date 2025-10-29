@@ -8,13 +8,19 @@ function addProductToCart(product) {
   cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
 }
+
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
 }
 
-// add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+// Wait for DOM to load before adding listener
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartButton = document.getElementById("addToCart");
+  if (addToCartButton) {
+    addToCartButton.addEventListener("click", addToCartHandler);
+  } else {
+    console.error("Add to cart button not found");
+  }
+});
