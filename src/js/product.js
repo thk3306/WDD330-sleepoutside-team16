@@ -5,11 +5,7 @@ import { getLocalStorage } from "./utils.mjs";
 const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
-  let currentCart = [];
-  let existingCart = getLocalStorage("so-cart");
-  if (existingCart) {
-    currentCart.push(existingCart);
-  }
+  let currentCart = getLocalStorage("so-cart") || [];
   currentCart.push(product);
   setLocalStorage("so-cart", currentCart);
 }
