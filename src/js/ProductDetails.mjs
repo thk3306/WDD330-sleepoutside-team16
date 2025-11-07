@@ -34,7 +34,7 @@ export default class ProductData {
     productColor.setAttribute('class', 'product__color');
     productColor.textContent = product.Colors.ColorName;
     productDescription.setAttribute('class', 'product__description');
-    productDescription.textContent = product.DescriptionHtmlSimple;
+    productDescription.innerHTML = product.DescriptionHtmlSimple;
     productDetailsAdd.setAttribute('class', 'product-detail__add');
     addToCart.setAttribute('id', 'addToCart');
     addToCart.setAttribute('data-id', product.ProductID);
