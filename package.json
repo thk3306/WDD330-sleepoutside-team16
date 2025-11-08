@@ -8,7 +8,8 @@
     "build": "vite build --emptyOutDir",
     "lint": "eslint *.js src/**/*.js",
     "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
-    "test": "jest"
+    "test": "jest",
+    "preview": "vite preview"
   },
   "author": "Shane Thompson",
   "license": "ISC",
@@ -31,5 +32,5 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ]
+  ]  
 }
