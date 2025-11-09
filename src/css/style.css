@@ -138,8 +138,8 @@ button {
 
 #cart-count-icon.show {
   position: absolute;
-  top: .2em;
-  right: -.3em;
+  top: 0.2em;
+  right: -0.3em;
   width: 20px;
   height: 20px;
   background-color: var(--primary-color);
