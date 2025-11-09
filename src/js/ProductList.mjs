@@ -1,4 +1,6 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, getCartItemCount } from "./utils.mjs";
+
+getCartItemCount();
 
 function productCardTemplate(product) {
   return `<li class="product-card">

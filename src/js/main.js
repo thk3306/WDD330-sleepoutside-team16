@@ -1,5 +1,8 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import { getCartItemCount } from "./utils.mjs";
+
+getCartItemCount();
 
 const dataSource = new ProductData("tents");
 
