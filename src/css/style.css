@@ -193,6 +193,17 @@ button {
   color: var(--dark-grey);
 }
 
+.product-grid {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.product-grid li {
+  list-style-type: none;
+  width: 10rem;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -279,6 +290,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  .product-grid {
+    flex-wrap: wrap;
   }
 }
 
