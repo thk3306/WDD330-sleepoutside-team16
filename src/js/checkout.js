@@ -1,4 +1,4 @@
 import { getCartItemCount, loadHeaderFooter } from "./utils.mjs";
 
-await loadHeaderFooter();
+loadHeaderFooter();
 // getCartItemCount();

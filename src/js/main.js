@@ -2,7 +2,7 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { getCartItemCount, loadHeaderFooter } from "./utils.mjs";
 
-await loadHeaderFooter();
+loadHeaderFooter();
 // getCartItemCount();
 
 const dataSource = new ProductData("tents");
