@@ -246,6 +246,20 @@ button {
   margin-top: 0;
 }
 
+.category-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.category-list a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  font-weight: bold;
+}
 .cart-card .card__name {
   grid-row: 1;
   grid-column: 2;
