@@ -28,9 +28,13 @@ export default class ProductData {
     productTitle.textContent = product.NameWithoutBrand;
     productTitle.setAttribute('class', 'divider');
     
-    // Check if the image URL needs a base path
-    const imageUrl = product.Images?.PrimaryLarge || product.Image;
-    productImage.setAttribute('src', imageUrl);
+    const primarySmall = product.Images?.PrimarySmall
+    const primaryMedium = product.Images?.PrimaryMedium
+    const primaryLarge = product.Images?.PrimaryLarge
+    
+    productImage.setAttribute('srcset', `${primarySmall} 300w, ${primaryMedium} 500w, ${primaryLarge} 800w`);
+    productImage.setAttribute('sizes', '(max-width: 500px) 300px, (max-width: 800px) 500px, 800px');
+    productImage.setAttribute('src', primaryMedium);
     productImage.setAttribute('class', 'divider');
     productImage.setAttribute('alt', product.Name);
     
