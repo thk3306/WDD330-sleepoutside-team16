@@ -3,9 +3,17 @@ import { renderListWithTemplate, getCartItemCount } from "./utils.mjs";
 // getCartItemCount();
 
 function productCardTemplate(product, category) {
+  const primarySmall = product.Images?.PrimarySmall || product.Image;
+  const primaryMedium = product.Images?.PrimaryMedium || product.Image;
+  const primaryLarge = product.Images?.PrimaryLarge || product.Image;
+  
   return `<li class="product-card">
     <a href="/product_pages/?product=${product.Id}&category=${encodeURIComponent(category)}">
-      <img src="${product.Images?.PrimaryMedium || product.Image}" alt="Image of ${product.Name}">
+      <img 
+        srcset="${primarySmall} 300w, ${primaryMedium} 500w, ${primaryLarge} 800w"
+        sizes="(max-width: 500px) 300px, (max-width: 800px) 500px, 800px"
+        src="${primaryMedium}" 
+        alt="Image of ${product.Name}">
       <h2 class="card__brand">${product.Brand.Name}</h2>
       <h3 class="card__name">${product.Name}</h3>
       <p class="product-card__price">$${product.FinalPrice}</p>
