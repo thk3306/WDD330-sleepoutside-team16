@@ -13,7 +13,6 @@ export default class ProductData {
       .then(convertToJson)
       .then((data) => data);
   }
-
   renderProductDetails(product) {
     const productdetails = document.createElement('section');
     const productName = document.createElement('h3');
@@ -28,9 +27,17 @@ export default class ProductData {
     productName.textContent = product.Brand.Name;
     productTitle.textContent = product.NameWithoutBrand;
     productTitle.setAttribute('class', 'divider');
-    productImage.setAttribute('src', product.Image);
+    
+    const primarySmall = product.Images?.PrimarySmall
+    const primaryMedium = product.Images?.PrimaryMedium
+    const primaryLarge = product.Images?.PrimaryLarge
+    
+    productImage.setAttribute('srcset', `${primarySmall} 300w, ${primaryMedium} 500w, ${primaryLarge} 800w`);
+    productImage.setAttribute('sizes', '(max-width: 500px) 300px, (max-width: 800px) 500px, 800px');
+    productImage.setAttribute('src', primaryMedium);
     productImage.setAttribute('class', 'divider');
     productImage.setAttribute('alt', product.Name);
+    
     productPrice.setAttribute('class', 'product-card__price');
     productPrice.textContent = `$${product.ListPrice}`;
     productColor.setAttribute('class', 'product__color');
