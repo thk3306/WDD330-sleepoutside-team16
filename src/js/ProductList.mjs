@@ -1,6 +1,6 @@
 import { renderListWithTemplate, getCartItemCount } from "./utils.mjs";
 
-getCartItemCount();
+// getCartItemCount();
 
 function productCardTemplate(product) {
   return `<li class="product-card">
