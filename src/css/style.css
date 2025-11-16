@@ -135,7 +135,7 @@ button {
   fill: gray;
 }
 
-.cart:hover #cart-count-icon {
+.cart:hover #cart-count-icon.show {
   background-color: gray;
   color: var(--primary-color);
 }
@@ -285,6 +285,16 @@ button {
   grid-column: 3;
 }
 
+.cart-footer hide {
+  display: none;
+}
+
+.cart-total {
+  text-align: right;
+  font-size: 1.5em;
+  margin-right: 2em;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -298,6 +308,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  .cart-total {
+    margin-right: 1em;
   }
 }
 
