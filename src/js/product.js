@@ -1,9 +1,8 @@
-import { getParam, getCartItemCount, loadHeaderFooter } from "./utils.mjs";
+import { getParam, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
 loadHeaderFooter();
-// getCartItemCount();
 
 const productId = getParam("product");
 const category = getParam("category") || "tents";
