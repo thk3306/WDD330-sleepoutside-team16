@@ -28,7 +28,7 @@ export default class ProductData {
     productName.textContent = product.Brand.Name;
     productTitle.textContent = product.NameWithoutBrand;
     productTitle.setAttribute('class', 'divider');
-    productImage.setAttribute('src', product.Image);
+    productImage.setAttribute('src', product.Images.PrimaryLarge);
     productImage.setAttribute('class', 'divider');
     productImage.setAttribute('alt', product.Name);
     productPrice.setAttribute('class', 'product-card__price');
