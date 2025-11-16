@@ -5,8 +5,13 @@ import { loadHeaderFooter, getParam } from "./utils.mjs";
 loadHeaderFooter();
 
 const category = getParam("category") || "tents"; // default to tents if no category specified
-document.getElementById("category-name").textContent =
-  category.charAt(0).toUpperCase() + category.slice(1);
+const categoryNameEl = document.getElementById("category-name");
+if (categoryNameEl) {
+  categoryNameEl.textContent = category
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 
 const dataSource = new ProductData(category);
 const element = document.querySelector(".product-list");

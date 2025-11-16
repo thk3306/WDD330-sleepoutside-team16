@@ -94,6 +94,10 @@ p {
   margin-top: -1.7em;
 }
 
+.categories h2 {
+  padding: 0.5em;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -253,6 +257,7 @@ button {
   justify-content: center;
   gap: 1em;
   padding: 1em;
+  text-align: center;
 }
 
 .category-list a {

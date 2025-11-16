@@ -1,6 +1,4 @@
-import { renderListWithTemplate, getCartItemCount } from "./utils.mjs";
-
-// getCartItemCount();
+import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product, category) {
   const primarySmall = product.Images?.PrimarySmall || product.Image;

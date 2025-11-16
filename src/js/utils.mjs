@@ -57,16 +57,15 @@ export async function loadHeaderFooter() {
   const footerTemplate = await loadTemplate('../partials/footer.html');
   const footerElement = document.querySelector('#footer');
   renderWithTemplate(footerTemplate, footerElement);
+
+  getCartItemCount();
 }
 
 export function getCartItemCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length > 0) {
-    let cartIcon = document.querySelector(".cart");
-    let cartCount = document.createElement('p');
-    cartCount.setAttribute('id', 'cart-count-icon');
+    let cartCount = document.querySelector('#cart-count-icon');
     cartCount.textContent = cartItems.length;
     cartCount.classList.add('show');
-    cartIcon.appendChild(cartCount);
   }
 }
