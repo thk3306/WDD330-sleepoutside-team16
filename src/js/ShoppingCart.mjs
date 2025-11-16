@@ -27,6 +27,11 @@ export default class ShoppingCart {
     init() {
         this.cartItems = getLocalStorage(this.key) || [];
         this.renderCart(this.cartItems);
+        if (this.cartItems.length > 0) {
+            document.querySelector('.cart-footer').classList.remove('hide');
+            const total = this.cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+            document.querySelector('.cart-total').textContent = `Total: $${total.toFixed(2)}`;
+        }
     }
 
     renderCart(items) {
