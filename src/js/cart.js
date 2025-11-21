@@ -8,3 +8,7 @@ const cart = new ShoppingCart(
   document.querySelector(".product-list"),
 );
 cart.init();
+
+document
+  .querySelector(".checkout-button")
+  .addEventListener("click", () => (location.href = "/checkout/index.html"));
