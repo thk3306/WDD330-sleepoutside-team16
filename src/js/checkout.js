@@ -1,12 +1,10 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import ShoppingCart from "./ShoppingCart.mjs";
+import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
-const cart = new ShoppingCart(
-  "so-cart",
-  document.querySelector(".product-list"),
-);
-cart.init();
-
-
+const checkout = new CheckoutProcess("so-cart", ".order-summary");
+checkout.init();
+checkout.calculateItemSubTotal();
+checkout.calculateOrderTotal();
+checkout.displayOrderTotals();
