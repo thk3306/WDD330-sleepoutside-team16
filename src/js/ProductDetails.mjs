@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage, getCartItemCount } from "./utils.mjs";
 
-export default class ProductData {
+export default class ExternalServices {
   constructor(productId, dataSource){
   this.productId = productId;
   this.product = {};
