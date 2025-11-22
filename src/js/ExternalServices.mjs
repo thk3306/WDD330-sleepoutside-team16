@@ -1,11 +1,11 @@
 const baseURL = import.meta.env.VITE_SERVER_URL
 
-function convertToJson(res) {
-  let jsonResponse = res.json();
-  if (jsonResponse.ok) {
+async function convertToJson(res) {
+  const jsonResponse = await res.json();
+  if (res.ok) {
     return jsonResponse;
   } else {
-    throw { name: 'servicesError', messag: jsonResponse };
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
@@ -22,7 +22,7 @@ export default class ExternalServices {
     const products = await this.getData();
     return products.find((item) => item.Id === id);
   }
-
+  
   async checkout(payload) {
     const options = {
       method: "POST",

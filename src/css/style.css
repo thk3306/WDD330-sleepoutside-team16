@@ -289,10 +289,73 @@ button {
   display: none;
 }
 
+.cart-footer {
+  display: block;
+    width: 250px;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+}
+
 .cart-total {
-  text-align: right;
   font-size: 1.5em;
-  margin-right: 2em;
+  margin-right: 1em;
+}
+
+.checkout-button {
+    margin-bottom: 1em;
+}
+
+.checkout-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1em;
+}
+
+.checkout-steps h2 {
+  grid-row-start: 1;
+  text-align: center;
+  margin-bottom: .5em;
+}
+
+.checkout-steps form {
+  grid-row-start: 3;
+  display: block;
+  font-size: 1.3rem;
+}
+
+fieldset {
+  border: none;
+}
+
+.checkout-steps input[type=text], button {
+  display: block;
+  padding: .8rem;
+  width: 95%;
+  margin: .4em;
+  font-size: .8rem;
+}
+
+.checkout-steps #lname, #zip {
+  margin-bottom: 2em;
+}
+
+.checkout-steps h3 {
+  margin-bottom: .5em;
+}
+
+.checkout-steps form, .checkout-steps .order-summary {
+ border: 1px solid var(--tertiary-color);
+ padding: .5em;
+ margin: .5em;
+}
+
+.checkout-steps input:required {
+  border-bottom: 2px solid var(--tertiary-color);
+}
+
+.checkout-steps input:valid {
+  border-bottom: 2px solid var(--dark-grey);
 }
 
 @media screen and (min-width: 500px) {

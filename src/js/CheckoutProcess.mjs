@@ -16,7 +16,6 @@ function formDataToJSON(formElement) {
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
 function packageItems(items) {
   const simpleItemList = items.map((item) => {
-    console.log(item);
     return {
       id: item.Id,
       name: item.Name,
@@ -40,15 +39,16 @@ export default class CheckoutProcess {
   }
 
   init() {
-    this.list = getLocalStorage(this.key);
-    // this.calculateItemSummary();
+    this.list = getLocalStorage(this.key) || [];
+    if (this.list.length > 0) {
+      this.calculateItemSubTotal();
+      this.calculateOrderTotal();
+      this.displayOrderTotals();
+    }
   }
 
   calculateItemSubTotal() {
-    if (this.list.length > 0) {
       this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
-      document.querySelector('.subtotal').textContent = `Subtotal: $${this.itemTotal.toFixed(2)}`;
-    }
   }
 
   calculateOrderTotal() {
@@ -63,10 +63,10 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
-    document.querySelector(`${this.outputSelector} .subtotal`).innerText = `$${this.itemTotal.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .tax`).innerText = `$${this.tax.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .shipping`).innerText = `$${this.shipping.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .order-total`).innerText = `$${this.orderTotal.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .subtotal`).innerText = `Subtotal: $${this.itemTotal.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .tax`).innerText = `Tax: $${this.tax.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .shipping`).innerText = `Shipping: $${this.shipping.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .order-total`).innerText = `Total: $${this.orderTotal.toFixed(2)}`;
   }
 
   async checkout() {

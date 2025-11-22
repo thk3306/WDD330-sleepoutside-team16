@@ -1,17 +1,20 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, deleteLocalStorage } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
 const order = new CheckoutProcess("so-cart", ".order-summary");
 order.init();
-order.calculateItemSubTotal();
-order.calculateOrderTotal();
-order.displayOrderTotals();
 
 // listening for click on the button
 document.querySelector("#checkout").addEventListener("click", (e) => {
   e.preventDefault();
-
-  order.checkout();
+  let form = document.forms["checkout-form"];
+  let valid = form.checkValidity();
+  form.reportValidity();
+  if (valid) {
+    order.checkout();
+    deleteLocalStorage("so-cart");
+    location.href = "success.html";
+  }
 });
