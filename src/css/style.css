@@ -358,6 +358,12 @@ fieldset {
   border-bottom: 2px solid var(--dark-grey);
 }
 
+#success {
+  text-align: center;
+  margin: 1em;
+  font-size: 2em;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
