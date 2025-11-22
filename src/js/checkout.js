@@ -1,4 +1,4 @@
-import { loadHeaderFooter, deleteLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
@@ -14,7 +14,5 @@ document.querySelector("#checkout").addEventListener("click", (e) => {
   form.reportValidity();
   if (valid) {
     order.checkout();
-    deleteLocalStorage("so-cart");
-    location.href = "success.html";
   }
 });

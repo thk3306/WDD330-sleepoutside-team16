@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage, removeAllAlerts, deleteLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -48,7 +48,7 @@ export default class CheckoutProcess {
   }
 
   calculateItemSubTotal() {
-      this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
+    this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
   }
 
   calculateOrderTotal() {
@@ -82,10 +82,13 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(order);
+      deleteLocalStorage("so-cart");
+      location.href = "success.html";
       // console.log(response);
     } catch (err) {
       console.log(err);
-      alert("There was a problem processing your order. Please try again.");
+      removeAllAlerts();
+      Object.values(err.message).forEach(message => alertMessage(message));
     }
   }
 }

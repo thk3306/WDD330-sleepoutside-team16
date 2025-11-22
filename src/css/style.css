@@ -291,10 +291,10 @@ button {
 
 .cart-footer {
   display: block;
-    width: 250px;
-    margin-left: auto;
-    margin-right: 0;
-    text-align: right;
+  width: 250px;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
 }
 
 .cart-total {
@@ -303,7 +303,7 @@ button {
 }
 
 .checkout-button {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .checkout-steps {
@@ -315,7 +315,7 @@ button {
 .checkout-steps h2 {
   grid-row-start: 1;
   text-align: center;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .checkout-steps form {
@@ -328,26 +328,29 @@ fieldset {
   border: none;
 }
 
-.checkout-steps input[type=text], button {
+.checkout-steps input[type="text"],
+button {
   display: block;
-  padding: .8rem;
+  padding: 0.8rem;
   width: 95%;
-  margin: .4em;
-  font-size: .8rem;
+  margin: 0.4em;
+  font-size: 0.8rem;
 }
 
-.checkout-steps #lname, #zip {
+.checkout-steps #lname,
+#zip {
   margin-bottom: 2em;
 }
 
 .checkout-steps h3 {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
-.checkout-steps form, .checkout-steps .order-summary {
- border: 1px solid var(--tertiary-color);
- padding: .5em;
- margin: .5em;
+.checkout-steps form,
+.checkout-steps .order-summary {
+  border: 1px solid var(--tertiary-color);
+  padding: 0.5em;
+  margin: 0.5em;
 }
 
 .checkout-steps input:required {
@@ -362,6 +365,18 @@ fieldset {
   text-align: center;
   margin: 1em;
   font-size: 2em;
+}
+
+.alert {
+  display: grid;
+  grid-template-columns: auto 20px;
+  background-color: var(--tertiary-color);
+  margin: 1em;
+  color: var(--light-grey);
+}
+
+.alert span {
+  align-self: center;
 }
 
 @media screen and (min-width: 500px) {
