@@ -73,3 +73,19 @@ export function getCartItemCount() {
     cartCount.classList.add('show');
   }
 }
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement('div').classList.add('alert');
+
+  alert.addEventListener('click', (e) => {
+    console.log(e.target);  
+    main.removeChild(this);
+  });
+
+  const main = document.querySelector('main');
+  main.prepend(alert);
+    
+  if (scroll) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
