@@ -82,9 +82,10 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(order);
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       console.log(err);
+      alert("There was a problem processing your order. Please try again.");
     }
   }
 }
