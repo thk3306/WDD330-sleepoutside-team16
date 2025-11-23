@@ -68,8 +68,9 @@ export async function loadHeaderFooter() {
 export function getCartItemCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length > 0) {
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     let cartCount = document.querySelector('#cart-count-icon');
-    cartCount.textContent = cartItems.length;
+    cartCount.textContent = totalItems;
     cartCount.classList.add('show');
   }
 }

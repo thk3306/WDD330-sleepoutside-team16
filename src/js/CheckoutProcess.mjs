@@ -48,13 +48,14 @@ export default class CheckoutProcess {
   }
 
   calculateItemSubTotal() {
-    this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
+    this.itemTotal = this.list.reduce((sum, item) => sum + (item.FinalPrice * item.quantity), 0);
   }
 
   calculateOrderTotal() {
     // calculate the tax and shipping amounts. Add those to the cart total to figure out the order total
     this.tax = (this.itemTotal * 0.06);
-    this.shipping = 10 + ((this.list.length - 1) * 2);
+    let itemCount = this.list.reduce((sum, item) => sum + item.quantity, 0);
+    this.shipping = 10 + ((itemCount - 1) * 2);
     this.orderTotal = this.itemTotal + this.tax + this.shipping;
 
     // display the totals.
