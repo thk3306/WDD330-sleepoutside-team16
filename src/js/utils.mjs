@@ -13,6 +13,10 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+// delete data from local storage
+export function deleteLocalStorage(key) {
+  localStorage.removeItem(key);
+}
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -64,8 +68,28 @@ export async function loadHeaderFooter() {
 export function getCartItemCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length > 0) {
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     let cartCount = document.querySelector('#cart-count-icon');
-    cartCount.textContent = cartItems.length;
+    cartCount.textContent = totalItems;
     cartCount.classList.add('show');
   }
+}
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+  const main = document.querySelector("main");
+  main.prepend(alert);
+  if (scroll) window.scrollTo(0, 0);}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }

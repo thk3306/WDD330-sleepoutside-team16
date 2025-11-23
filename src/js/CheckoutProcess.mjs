@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage, removeAllAlerts, deleteLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -16,7 +16,6 @@ function formDataToJSON(formElement) {
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
 function packageItems(items) {
   const simpleItemList = items.map((item) => {
-    console.log(item);
     return {
       id: item.Id,
       name: item.Name,
@@ -40,21 +39,23 @@ export default class CheckoutProcess {
   }
 
   init() {
-    this.list = getLocalStorage(this.key);
-    // this.calculateItemSummary();
+    this.list = getLocalStorage(this.key) || [];
+    if (this.list.length > 0) {
+      this.calculateItemSubTotal();
+      this.calculateOrderTotal();
+      this.displayOrderTotals();
+    }
   }
 
   calculateItemSubTotal() {
-    if (this.list.length > 0) {
-      this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
-      document.querySelector('.subtotal').textContent = `Subtotal: $${this.itemTotal.toFixed(2)}`;
-    }
+    this.itemTotal = this.list.reduce((sum, item) => sum + (item.FinalPrice * item.quantity), 0);
   }
 
   calculateOrderTotal() {
     // calculate the tax and shipping amounts. Add those to the cart total to figure out the order total
     this.tax = (this.itemTotal * 0.06);
-    this.shipping = 10 + ((this.list.length - 1) * 2);
+    let itemCount = this.list.reduce((sum, item) => sum + item.quantity, 0);
+    this.shipping = 10 + ((itemCount - 1) * 2);
     this.orderTotal = this.itemTotal + this.tax + this.shipping;
 
     // display the totals.
@@ -63,10 +64,10 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
-    document.querySelector(`${this.outputSelector} .subtotal`).innerText = `$${this.itemTotal.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .tax`).innerText = `$${this.tax.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .shipping`).innerText = `$${this.shipping.toFixed(2)}`;
-    document.querySelector(`${this.outputSelector} .order-total`).innerText = `$${this.orderTotal.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .subtotal`).innerText = `Subtotal: $${this.itemTotal.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .tax`).innerText = `Tax: $${this.tax.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .shipping`).innerText = `Shipping: $${this.shipping.toFixed(2)}`;
+    document.querySelector(`${this.outputSelector} .order-total`).innerText = `Total: $${this.orderTotal.toFixed(2)}`;
   }
 
   async checkout() {
@@ -82,9 +83,13 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(order);
-      console.log(response);
+      deleteLocalStorage("so-cart");
+      location.href = "success.html";
+      // console.log(response);
     } catch (err) {
       console.log(err);
+      removeAllAlerts();
+      Object.values(err.message).forEach(message => alertMessage(message));
     }
   }
 }

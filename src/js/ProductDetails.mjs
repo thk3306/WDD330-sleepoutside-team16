@@ -61,7 +61,15 @@ export default class ExternalServices {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+    console.log(cartItems);
+    const existingItem = cartItems.find(item => item.Id === this.productId);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    }
+    else {
+      const newItem = { ...this.product, quantity: 1 };
+      cartItems.push(newItem);
+    }
     setLocalStorage("so-cart", cartItems);
     getCartItemCount();
   }
