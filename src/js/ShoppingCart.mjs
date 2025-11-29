@@ -27,6 +27,11 @@ export default class ShoppingCart {
 
     init() {
         this.cartItems = getLocalStorage(this.key) || [];
+        // Set quantity to 1 if it doesn't exist
+        this.cartItems = this.cartItems.map(item => ({
+            ...item,
+            quantity: item.quantity || 1
+        }));
         this.renderCart(this.cartItems);
         if (this.cartItems.length > 0) {
             document.querySelector('.cart-footer').classList.remove('hide');
