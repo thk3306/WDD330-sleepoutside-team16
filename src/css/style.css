@@ -35,7 +35,37 @@ header {
   justify-content: space-between;
   padding: 0.5rem;
 }
+/* ==========================================
+   ALERT SYSTEM STYLES
+   These styles control how alerts look
+   ========================================== */
 
+/* Container for all alerts */
+.alert-list {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Individual alert styling */
+.alert-item {
+  margin: 0;
+  padding: 1rem 1.5rem; /* 1rem top/bottom, 1.5rem left/right */
+  text-align: center;
+  font-weight: 500; /* Medium bold */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle divider line */
+  transition: opacity 0.3s ease; /* Smooth fade effect */
+}
+
+/* Remove border from the last alert */
+.alert-item:last-child {
+  border-bottom: none;
+}
+
+/* Optional: Add hover effect */
+.alert-item:hover {
+  opacity: 0.9;
+}
 p {
   padding: 0.75rem;
 }
